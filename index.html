@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Celestial Cuisine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="mobile.css" media="only screen and (max-width: 696px)" id="mobileCSS">
+    <link rel="stylesheet" type="text/css" href="font.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="cycle.js"></script>
+
+    <script>
+
+
+   $(document).ready(function(){
+
+	   $(".menu_button").click(function(){ $(".sidebar").toggleClass("hidden");
+     $(".the-body").toggleClass("visible");
+        });
+
+      $(".sidebar button").click(function(){ $(".sidebar").toggleClass("hidden");
+      $(".the-body").toggleClass("visible");
+     });
+
+	   $(".sidebar  a").click(function(){ $(".sidebar").addClass("hidden");
+     $(".the-body").toggleClass("visible");
+        });
+
+        function checkSize() {
+
+		   if($(".astronaut-planet").css("display") == "none") {
+
+			   $("#kids_nav").prop("href", "#recipes-jump");
+
+			   $(".parents a").prop("href", "#about-jump");
+
+			   $(".intro-inner a").prop("href", "#ingredients-jump");
+
+			   $("#sidebar_recipes").prop("href", "#recipes-jump");
+
+			   $("#sidebar_about").prop("href", "#about-jump");
+
+			   $("#sidebar_contact").prop("href", "#contact-jump");
+
+
+		   }
+	   }
+
+	   checkSize();
+	   $(window).resize(checkSize);
+
+       $(".ingredient-container").cycle({
+        fx: 'fade',
+        next: '.right_arrow',
+        prev: '.left_arrow',
+        slides: '.slide',
+        background: 'transparent',
+        timeout: 0,
+        fit: 0
+
+
+
+       });
+
+      var stickyHeaders = function() {
+        $(".sticky-area").each(function() {
+          var el             = $(this);
+          var offset         = el.offset();
+          var scrollTop      = $(window).scrollTop();
+          var stickyHeader   = $('.section-head',this);
+
+        if (
+          (scrollTop > offset.top) && (scrollTop < offset.top + el.height()) && ($(".astronaut-planet").css("display") != "none"))
+         { stickyHeader.addClass('fixed');
+        }
+        else {
+        stickyHeader.removeClass('fixed');};
+        });
+
+        }
+
+      $(window).bind('scroll', function(){
+      stickyHeaders();
+      });
+
+      $(window).scroll(function(){
+        var scrollTop = $(window).scrollTop();
+        var breakPoint = $('footer nav');
+        var offset = breakPoint.offset();
+        var menu = $(".menu_button");
+
+        console.log(offset.top);
+        console.log(breakPoint.height());
+
+        if((scrollTop >= (offset.top + breakPoint.height() - $(window).height())) || (scrollTop <= ($('.ingredients').offset().top + $('.ingredients').height() - $(window).height()))) {
+          menu.removeClass('visible');
+        } else {
+          menu.addClass('visible');
+        }
+      });
+
+      });
+
+    </script>
+
+
+</head>
+<body>
+
+  <div class="sidebar desktop hidden">
+  <button>X</button>
+      <ul>
+             <li><a href="#top">Home</a></li>
+             <li><a href="#recipes">Recipes</a></li>
+             <li><a href="#about-jump">About</a></li>
+             <li><a href="#contact-jump">Contact</a></li>
+         </ul>
+  </div>
+
+<div class="the-body">
+
+   <header>
+     <div class="inner">
+       <nav>
+           <ul>
+               <li class="desktop"><a href="#top">Home</a></li>
+               <li class="desktop"><a href="#recipes">Recipes</a></li>
+               <li class="logo-li"><img src="images/celestial_cuisine_logo.png" class="logo" alt="Celestial Cuisine Logo"></li>
+               <li class="desktop"><a href="#about-jump">About</a></li>
+               <li class="desktop"><a href="#contact-jump">Contact</a></li>
+               <li class="mobile"><button class="menu_button"><img src="images/sidebar_menu.png" alt="Menu Button"></button></li>
+           </ul>
+       </nav>
+     </div>
+   </header>
+
+   <div class="sidebar mobile hidden">
+    <ul>
+           <li><a href="#top">Home</a></li>
+           <li><a href="#recipes" id="sidebar_recipes">Recipes</a></li>
+           <li><a href="#about-jump" id="sidebar_about">About</a></li>
+           <li><a href="#contact-jump-jump" id="sidebar_contact">Contact</a></li>
+       </ul>
+</div>
+
+    <main>
+        <section class="hero-navigation">
+
+            <div class="kids">
+                <a href="#recipes" id="kids_nav">
+                    <div class="inner">
+                        <img src="images/kids_rocket-03.png" class="home_rocket" alt="Rocket Ship">
+                        <hr class="top-border">
+                        <h1>Kids!</h1>
+                        <hr class="bottom-border">
+                        <h2>Enter Here</h2>
+                        <img src="images/down_arrow.png" class="down_arrow" alt="Down Arrow">
+                    </div>
+                </a>
+            </div>
+
+            <div class="parents">
+                <a href="#about-jump">
+                    <div class="inner">
+                    <img src="images/satellite.png" class="satellite" alt="Satellite">
+                    <hr class="top-border">
+                    <h1>Parents!</h1>
+                    <hr class="bottom-border">
+                    <h2>Enter Here</h2>
+                    <img src="images/down_arrow.png" class="down_arrow" alt="Down Arrow">
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="recipes" class="recipe-intro sticky-area" >
+
+          <a class='named-anchor' id='recipes-jump'></a>
+
+          <div class="intro-inner">
+
+            <div class="intro-bubble">
+                    <div class="intro-text">
+                        <p>Greetings, young earthling!</p>
+                        <p>I am <span>Zorbenklop</span>, meal ambassador of <span>Kinderxian Galaxy #12345!</span></p>
+                        <p>Click the <span>down arrow</span> below for the official <span>Kinderxian Galaxy #12345</span> lunch to be <span>out of this world super kid!</span></p>
+
+                        <a href="#ingredients-jump">
+                        <img src="images/green_arrow.png" class="down_arrow" alt="Down Arrow">
+                        </a>
+
+                    </div>
+            </div>
+
+
+            <img src="images/alien_dude.png" class="alien desktop" alt="Zorbenklop">
+
+          </div>
+
+        </section>
+
+        <button class="menu_button"><img src="images/sidebar_menu.png" alt="Sidebar Menu Button"></button>
+
+
+        <section class="ingredients sticky-area" id="ingredients">
+          <a class="named-anchor" id="ingredients-jump"></a>
+            <div class="section-head">
+                <div class="inner">
+                <h1>What You'll Need</h1>
+                </div>
+            </div>
+            <div class="inner planets">
+                <img src="images/red_planet.png" class="red_planet" alt="Red Planet">
+
+                <img src="images/blue_planet.png" class="blue_planet" alt="Blue Planet">
+
+                <div class="slideshow">
+
+                    <button class=" slideshow_arrow left_arrow"><img src="images/green_arrow.png" class="left_arrow_img" alt="Left Arrow"></button>
+
+                    <div class='ingredient-container'>
+
+                    <div class='slide'><img src="images/carrot.png" class="the_ingredient" alt="Carrot">
+                     <h3 class="ingredient-name">Carrots</h3>
+                        </div>
+
+                    <div class='slide'>
+                        <img src="images/almond_butter.png" class="the_ingredient" alt="Almond Butter">
+                          <h3 class="ingredient-name">Almond Butter</h3>
+                        </div>
+
+                    <div class='slide'>
+                        <img src="images/apple.png" class="the_ingredient" alt="Apple">
+                          <h3 class="ingredient-name">Green Apples</h3>
+                        </div>
+
+                    <div class='slide'>
+                        <img src="images/blueberry.png" class="the_ingredient" alt="Blueberry">
+                          <h3 class="ingredient-name">Blueberries</h3>
+                        </div>
+
+                    <div class='slide'>
+                        <img src="images/bagel.png" class="the_ingredient" alt="Bagel">
+                          <h3 class="ingredient-name">Bagel</h3>
+                        </div>
+
+                    <div class='slide'>
+                        <img src="images/kale.png" class="the_ingredient" alt="Kale">
+                          <h3 class="ingredient-name">Kale Chips</h3>
+                        </div>
+
+                    </div>
+
+
+                    <button class=" slideshow_arrow right_arrow">
+                    <img src="images/green_arrow.png" class="right_arrow_img" alt="Right Arrow">
+                    </button>
+
+                </div>
+
+
+            </div>
+
+            <img src="images/astronaut_planet-01.png" class="astronaut-planet" alt="Planet with Astronaut">
+
+        </section>
+
+        <section class="procedure sticky-area">
+
+            <div class="section-head">
+                <div class="inner">
+                <h1>How You Make It</h1>
+                </div>
+            </div>
+
+            <div class="procedure-steps">
+
+                <div class="recipe-title mobile">
+                        <div class="kinder-galaxy">
+                            <img src="images/sandwich.png" class="sandwich-left" alt="The Kinderxian Galaxy #12345 Unidentified Flying Sandwich">
+                            <h5>The Kinderxian Galaxy #12345</h5>
+                            <img src="images/sandwich.png" class="sandwich-right" alt="The Kinderxian Galaxy #12345 Unidentified Flying Sandwich">
+                        </div>
+                            <h3>Unidentified Flying</h3>
+                            <h2>Sandwich</h2>
+                    </div>
+
+                <div class="steps-left">
+                    <div class="step">
+                        <img src="images/step-one.png" class="step_one" alt="Two Bagel Slices">
+                        <div class="step-text">
+                            <h4>Step One</h4>
+                            <p>Cut the whole grain bagel and toast.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <img src="images/step-two.png" class="step_two" alt="Two Bagel Slices with Almond Butter">
+                        <div class="step-text">
+                            <h4>Step Two</h4>
+                            <p>Spread almond butter on each half.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <img src="images/step-three.png" class="step_three" alt="Two Bagel Slices with Almond Butter with Apple Slices on Top">
+                        <div class="step-text">
+                            <h4>Step Three</h4>
+                            <p>Place apple slices in a circle around one half of the bagel and place the other half on top.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="steps-right">
+                    <div class="step">
+                        <img src="images/step-four.png" class="step_four" alt="Blueberries with Kale Chips">
+                        <div class="step-text">
+                            <h4>Step Four</h4>
+                            <p>Lay a bed of kale chips and sprinkle blueberries around the plate.</p>
+                        </div>
+                    </div>
+
+                    <div class="step five">
+                        <img src="images/step-five.png" class="step_five" alt="Complete Sandwich">
+                        <div class="step-text">
+                            <h4>Step Five</h4>
+                            <p>Land the sandwich on the kale chips and add baby carrot antennas.</p>
+                        </div>
+                    </div>
+
+                    <div class="recipe-title desktop">
+                        <div class="kinder-galaxy">
+                            <img src="images/sandwich.png" class="sandwich-left" alt="The Kinderxian Galaxy #12345 Unidentified Flying Sandwich">
+                            <h5>The Kinderxian Galaxy #12345</h5>
+                            <img src="images/sandwich.png" class="sandwich-right" alt="The Kinderxian Galaxy #12345 Unidentified Flying Sandwich">
+                        </div>
+                            <h3>Unidentified Flying</h3>
+                            <h2>Sandwich</h2>
+                    </div>
+                    </div>
+
+                    <div class="rockets">
+                        <img src="images/rocket.png" class="rocket_1" alt="Rocket">
+                        <img src="images/rocket.png"  class="rocket_2" alt="Rocket">
+                        <img src="images/rocket.png"  class="rocket_3" alt="Rocket">
+                    </div>
+
+            </div>
+        </section>
+
+        <section class="salutation sticky-area" >
+            <img src="images/alien_dude.png" class="alien" alt="Zorbenklop">
+
+
+            <div class="text">
+                    <h5>Congratulations!</h5>
+                    <h4>You Did It</h4>
+                    <p> Stay tuned for more official <span>Kinderxian Galaxy #12345</span> recipes coming soon!</p>
+            </div>
+
+            <img src="images/alien_crew-01.png" class="alien_crew" alt="Friendly Aliens">
+
+        </section>
+
+        <section id="about" class="sticky-area">
+          <a class='named-anchor' id='about-jump'></a>
+            <div class="section-head">
+              <div class="inner">
+                <h1>About the Initiative</h1>
+              </div>
+            </div>
+
+            <div class="inner">
+                <img src="images/celestial_cuisine_logo.png" class="logo" alt="Celestial Cuisine Logo">
+				<p>As the childhood obesity epidemic continues to rise in the United States and elsewhere, the <span>CELESTIAL CUISINE </span>initiative is combatting the problem head-on. Working with top nutritionists, pediatricians and chefs, we’ve compiled (and continue to compile) an extensive repository of health-conscious recipes that your kid will love! With a sci-fi themed interactive website, it encourages your little one to help in and learn about the cooking process, as well.</p>
+
+			<p>So, what do you say? <span>Let’s make kids healthy again!</span></p>
+
+            </div>
+        </section>
+
+    <hr class="section-divide">
+
+        <section id="contact">
+          <a class='named-anchor' id='contact-jump'></a>
+            <h5>Want To Get In Touch?</h5>
+            <h6>Shoot us a message below!</h6>
+
+            <form>
+                <label>Name</label>
+                <input type="text" name="name">
+                <label>E-Mail</label>
+                <input type="text" name="email">
+                <label>Comments</label>
+                <textarea name="comments"></textarea>
+
+                <button type="submit">
+                    Submit
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <nav>
+            <ul>
+               <li><a href="#top">Home</a></li>
+                <li><a href="#recipes">Recipes</a></li>
+               <li><a href="#about-jump">About</a></li>
+               <li><a href="#contact-jump">Contact</a></li>
+            </ul>
+            <p>&copy;2018 Celestial Cuisine, LLC.</p>
+        </nav>
+
+        <div class="footer-logo">
+            <h4>&middot; Celestial &middot;</h4>
+            <h3>Cuisine</h3>
+            <h6>"For Healthy Kids!"</h6>
+        </div>
+    </footer>
+
+    </div>
+
+</body>
+</html>
